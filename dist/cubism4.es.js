@@ -4984,6 +4984,7 @@ class Live2DModel extends Container {
     this.glContextID = -1;
     this.elapsedTime = performance.now();
     this.deltaTime = 0;
+    this.wasUpdated = false;
     this._autoUpdate = false;
     this.once("modelLoaded", () => this.init(options));
   }
@@ -5095,9 +5096,13 @@ class Live2DModel extends Container {
   update(dt) {
     this.deltaTime += dt;
     this.elapsedTime += dt;
+    this.wasUpdated = true;
   }
   _render(renderer) {
     this.registerInteraction(renderer.plugins.interaction);
+    if (!this.wasUpdated) {
+      return;
+    }
     renderer.batch.reset();
     renderer.geometry.reset();
     renderer.shader.reset();
