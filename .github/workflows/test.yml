@@ -56,8 +56,8 @@ jobs:
           
       - name: Commit files
         run: |
-          git config --global user.name 'RaSan147'
-          git config --global user.email '34002411+RaSan147@users.noreply.github.com'
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email '<>'
           git add --all
           git commit -am "Automated report"
           git push
